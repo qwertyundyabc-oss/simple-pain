@@ -61,6 +61,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 		if (hasSoundResources()) {
 			addAudio(builder.getOrCreateCategory(Text.translatable("pain_mechanic.config.category.audio")), entries, pending);
 		}
+		addDebug(builder.getOrCreateCategory(Text.translatable("pain_mechanic.config.category.debug")), entries, pending);
 		addRescue(builder.getOrCreateCategory(Text.translatable("pain_mechanic.config.category.rescue")), entries, pending);
 		return builder.build();
 	}
@@ -108,6 +109,10 @@ public final class ModMenuIntegration implements ModMenuApi {
 		category.addEntry(e.startBooleanToggle(key("breathingEnabled"), c.breathingEnabled).setSaveConsumer(v -> c.breathingEnabled = v).requireRestart().build());
 		category.addEntry(e.startFloatField(key("painDroneThreshold"), c.painDroneThreshold).setMin(0f).setMax(0.99f).setSaveConsumer(v -> c.painDroneThreshold = v).requireRestart().build());
 		category.addEntry(e.startFloatField(key("painDroneFadeSeconds"), c.painDroneFadeSeconds).setMin(0.05f).setSaveConsumer(v -> c.painDroneFadeSeconds = v).requireRestart().build());
+	}
+
+	private static void addDebug(ConfigCategory category, ConfigEntryBuilder e, PainConfig.PainConfigData c) {
+		category.addEntry(e.startBooleanToggle(key("debugLogging"), c.debugLogging).setSaveConsumer(va -> c.debugLogging = va).requireRestart().build());
 	}
 
 	private static boolean hasSoundResources() {

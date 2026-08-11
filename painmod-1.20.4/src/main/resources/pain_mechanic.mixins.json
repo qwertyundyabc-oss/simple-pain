@@ -1,0 +1,22 @@
+﻿{
+  "required": true,
+  "package": "com.painmechanic.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "PlayerJumpMixin",
+    "DamageCaptureMixin",
+    "DamageTrackerDeathMessageMixin",
+    "LivingEntityShockPoseMixin",
+    "PreserveAdrenalineCooldownMixin"
+  ],
+  "client": [
+    "PlayerJumpClientMixin",
+    "InGameHudGuiShakeMixin",
+    "ScreenGuiShakeMixin",
+    "LivingEntityShockPoseClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+

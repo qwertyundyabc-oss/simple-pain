@@ -1,6 +1,7 @@
 package com.painmechanic.mixin;
 
 import com.painmechanic.PainSystem;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTracker;
 import net.minecraft.server.network.ServerPlayerEntity;
