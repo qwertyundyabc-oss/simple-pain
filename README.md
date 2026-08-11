@@ -65,6 +65,10 @@
 
 完整配置项见 `com.painmechanic.PainConfig`。
 
+## 音效说明
+
+本仓库的源码**不包含音效资源**（ssets/pain_mechanic/sounds/*.ogg 与 sounds.json 均已移除），因此直接构建出的 jar 不会有音效（其余功能不受影响）。如需音效，请自行向 src/main/resources/assets/pain_mechanic/sounds/ 添加音频文件并补回 sounds.json 定义。
+
 ## 构建
 
 需要 JDK 21 与网络（拉取 Fabric 依赖）：
@@ -89,3 +93,4 @@ MIT。
 ## AI 声明
 
 本项目（包括但不限于 Java 源码、`fabric.mod.json`、语言文件、音效清单、合成配方、构建脚本、本 README）**100% 由 AI 生成**，没有任何人类编写的代码。如果你在代码里看到奇怪的注释、乱码注释或者不优雅的实现——没错，那也是 AI 干的。喵。
+
