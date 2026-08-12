@@ -8,7 +8,7 @@
   "pain_mechanic.death.shock": "%s died after being unconscious for too long",
   "pain_mechanic.hud.pain": "Pain",
   "pain_mechanic.rescue.started": "Rescue started. Keep sneaking and stay close",
-  "pain_mechanic.rescue.progress": "Rescuing: %s seconds remaining",
+  "pain_mechanic.rescue.progress": "Rescuing... %ss",
   "pain_mechanic.rescue.busy": "This player is already being rescued",
   "pain_mechanic.rescue.already_started": "You are already rescuing another player",
   "pain_mechanic.rescue.success": "Rescue successful",

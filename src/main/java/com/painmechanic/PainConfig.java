@@ -303,7 +303,7 @@ public final class PainConfig {
 		/** 是否允许其他玩家救援休克玩家 */
 		public boolean rescueEnabled = true;
 		/** 救援持续时间（秒） */
-		public int rescueDurationSeconds = 3;
+		public int rescueDurationSeconds = 5;
 		/** 救援完成后保留的疼痛比例 */
 		public float rescuePainRatio = 0.75f;
 		/** 救援完成后恢复的生命比例 */

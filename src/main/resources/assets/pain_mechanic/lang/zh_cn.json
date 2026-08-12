@@ -8,7 +8,7 @@
   "pain_mechanic.death.shock": "%s昏迷过久而死",
   "pain_mechanic.hud.pain": "疼痛",
   "pain_mechanic.rescue.started": "正在救援休克玩家，保持潜行并靠近目标",
-  "pain_mechanic.rescue.progress": "救援中，还需 %s 秒",
+  "pain_mechanic.rescue.progress": "正在救援中... %ss",
   "pain_mechanic.rescue.busy": "该玩家正在被其他人救援",
   "pain_mechanic.rescue.already_started": "你已经在救援其他玩家",
   "pain_mechanic.rescue.success": "救援成功",
