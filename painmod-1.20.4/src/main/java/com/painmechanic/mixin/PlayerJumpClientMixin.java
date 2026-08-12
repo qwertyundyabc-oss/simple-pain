@@ -20,7 +20,8 @@ public abstract class PlayerJumpClientMixin {
 	private void painmod$blockClientJump(CallbackInfo ci) {
 		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT
 			&& (Object) this == MinecraftClient.getInstance().player
-			&& PainClientState.pain > PainClientState.maxHealth) {
+			&& PainClientState.pain > PainClientState.maxHealth
+			&& !PainClientState.adrenalineActive) {
 			ci.cancel();
 		}
 	}

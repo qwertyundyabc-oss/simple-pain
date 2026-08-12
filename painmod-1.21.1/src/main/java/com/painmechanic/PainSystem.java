@@ -493,8 +493,8 @@ public final class PainSystem {
 				continue;
 			}
 			attempt.ticks++;
-			if (attempt.ticks % 20 == 0) {
-				int remaining = Math.max(0, (duration - attempt.ticks + 19) / 20);
+			if (attempt.ticks % 20 == 1) {
+				int remaining = Math.max(1, (duration - attempt.ticks + 19) / 20);
 				rescuer.sendMessage(Text.translatable("pain_mechanic.rescue.progress", remaining), true);
 			}
 			if (attempt.ticks < duration) {
