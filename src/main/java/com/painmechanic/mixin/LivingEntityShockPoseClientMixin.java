@@ -17,7 +17,8 @@ public abstract class LivingEntityShockPoseClientMixin {
 	private boolean painmod$isLocalPlayerInShock() {
 		return (Object) this instanceof ClientPlayerEntity player
 			&& player == MinecraftClient.getInstance().player
-			&& PainClientState.pain > Math.max(1f, PainClientState.maxHealth);
+			&& PainClientState.pain > Math.max(1f, PainClientState.maxHealth)
+			&& !PainClientState.adrenalineActive;
 	}
 
 	@Inject(method = "updateSwimming", at = @At("HEAD"), cancellable = true)

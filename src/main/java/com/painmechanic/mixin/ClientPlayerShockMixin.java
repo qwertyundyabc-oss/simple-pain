@@ -17,7 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ClientPlayerShockMixin {
 	private boolean painmod$isLocalPlayerInShock() {
 		return (Object) this == MinecraftClient.getInstance().player
-			&& PainClientState.pain > Math.max(1f, PainClientState.maxHealth);
+			&& PainClientState.pain > Math.max(1f, PainClientState.maxHealth)
+			&& !PainClientState.adrenalineActive;
 	}
 
 	@Inject(method = "tickMovement", at = @At("HEAD"))
