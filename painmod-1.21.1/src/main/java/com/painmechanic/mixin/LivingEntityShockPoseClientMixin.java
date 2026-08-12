@@ -20,17 +20,19 @@ public abstract class LivingEntityShockPoseClientMixin {
 			&& PainClientState.pain > Math.max(1f, PainClientState.maxHealth);
 	}
 
-	@Inject(method = "updateSwimming", at = @At("TAIL"))
+	@Inject(method = "updateSwimming", at = @At("HEAD"), cancellable = true)
 	private void painmod$keepLocalShockSwimming(CallbackInfo ci) {
 		if (painmod$isLocalPlayerInShock()) {
 			((ClientPlayerEntity) (Object) this).setSwimming(true);
+			ci.cancel();
 		}
 	}
 
-	@Inject(method = "updatePose", at = @At("TAIL"))
+	@Inject(method = "updatePose", at = @At("HEAD"), cancellable = true)
 	private void painmod$keepLocalShockPose(CallbackInfo ci) {
 		if (painmod$isLocalPlayerInShock()) {
 			((ClientPlayerEntity) (Object) this).setPose(EntityPose.SWIMMING);
+			ci.cancel();
 		}
 	}
 }

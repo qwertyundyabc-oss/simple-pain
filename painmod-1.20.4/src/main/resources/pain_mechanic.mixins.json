@@ -13,7 +13,8 @@
     "PlayerJumpClientMixin",
     "InGameHudGuiShakeMixin",
     "ScreenGuiShakeMixin",
-    "LivingEntityShockPoseClientMixin"
+    "LivingEntityShockPoseClientMixin",
+    "ClientPlayerShockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

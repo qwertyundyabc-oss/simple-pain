@@ -13,17 +13,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** Keeps the server-side shock pose from being reset by vanilla pose updates. */
 @Mixin(PlayerEntity.class)
 public abstract class LivingEntityShockPoseMixin {
-	@Inject(method = "updateSwimming", at = @At("TAIL"))
+	@Inject(method = "updateSwimming", at = @At("HEAD"), cancellable = true)
 	private void painmod$keepShockSwimming(CallbackInfo ci) {
 		if ((Object) this instanceof ServerPlayerEntity player && PainSystem.isInShock(player)) {
 			player.setSwimming(true);
+			ci.cancel();
 		}
 	}
 
-	@Inject(method = "updatePose", at = @At("TAIL"))
+	@Inject(method = "updatePose", at = @At("HEAD"), cancellable = true)
 	private void painmod$keepShockPose(CallbackInfo ci) {
 		if ((Object) this instanceof ServerPlayerEntity player && PainSystem.isInShock(player)) {
 			player.setPose(EntityPose.SWIMMING);
+			ci.cancel();
 		}
 	}
 }
