@@ -2,7 +2,7 @@
 
 > **这是一个完全由 AI 编写的 Minecraft 模组。** 全部 Java 源码、资源文件、构建脚本——包括你正在读的这份 README.md——都是 AI 生成的，没有任何一行人类手写代码。喵。
 
-为 Minecraft 1.20.1、1.20.4、1.21.1、1.21.11 Fabric 设计的疼痛机制模组，各版本玩法完全一致。受伤会累积「疼痛值」，疼痛会削弱你的战斗能力；疼痛超过上限后你会进入休克状态，无法行动，等待队友救援或迎接死亡。
+为 Minecraft 1.21.1 NeoForge 设计的疼痛机制模组（**无声版本**，源码与 jar 均不含音效资源）。受伤会累积「疼痛值」，疼痛会削弱你的战斗能力；疼痛超过上限后你会进入休克状态，无法行动，等待队友救援或迎接死亡。与各 Fabric 版本（1.20.1 / 1.20.4 / 1.21.1 / 1.21.11）玩法完全一致。
 
 ## 玩法介绍
 
@@ -10,7 +10,7 @@
 
 - **受伤累积疼痛**：每次受到伤害都会按伤害量增加疼痛值（默认 1:1，致死伤害翻倍计算）。
 - **疼痛削弱战斗力**：疼痛值超过阈值（默认 4）后，移动速度、攻击伤害、攻击速度会逐步下降，最多削减 50%。
-- **休克**：疼痛值超过最大生命值的 100% 时进入休克——无法使用物品、破坏方块、攻击或跳跃，被强制按住游泳姿势，屏幕出现红色暗角脉动、GUI 抖动、黑暗效果，并伴随疼痛氛围效果。
+- **休克**：疼痛值超过最大生命值的 100% 时进入休克——无法使用物品、破坏方块、攻击或跳跃，被强制按住游泳姿势，屏幕出现红色暗角脉动、GUI 抖动、黑暗效果。
 - **濒死保护**：疼痛未满时受到致命伤害不会直接死亡，而是锁 1 点生命并将致死部分按双倍计入疼痛——然后你会一边顶着 1 点血一边看着疼痛值缓慢爬升。
 - **休克倒计时**：休克持续约 20 秒，之后进入约 20 秒的死亡倒计时阶段，总计约 40 秒。倒计时结束仍未获救，角色会被强制处死（连创造模式也无法豁免）。
 - **肾上腺素**：疼痛值达到最大生命值的 50% 时自动触发，持续 20 秒内移动/攻击/攻速获得 +25% 加成，压制疼痛带来的削弱与休克；但有 5 分钟的冷却时间。
@@ -28,33 +28,18 @@
 
 无序合成，一次产出 1 个。合成后可在模组专属创造标签页「Simple Pain」中找到。
 
-## 版本与下载
-
-每个 Minecraft 版本对应一个 Release，所有版本玩法完全一致。本仓库发布的均为**无声版本**（源码不包含音效资源，jar 也不含音效文件）。
-
-| Minecraft 版本 | Release | 下载 |
-| --- | --- | --- |
-| 1.20.1 | [v1.0.0+1.20.1](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.20.1) | [Simple-Pain-1.0.0+1.20.1-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.20.1/Simple-Pain-1.0.0%2B1.20.1-no-sounds.jar) |
-| 1.20.4 | [v1.0.0+1.20.4](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.20.4) | [Simple-Pain-1.0.0+1.20.4-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.20.4/Simple-Pain-1.0.0%2B1.20.4-no-sounds.jar) |
-| 1.21.1 | [v1.0.0+1.21.1](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.21.1) | [Simple-Pain-1.0.0+1.21.1-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.21.1/Simple-Pain-1.0.0%2B1.21.1-no-sounds.jar) |
-| 1.21.11 | [v1.0.0+1.21.11](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.21.11) | [Simple-Pain-1.0.0+1.21.11-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.21.11/Simple-Pain-1.0.0%2B1.21.11-no-sounds.jar) |
-| 1.21.1 (NeoForge) | [v1.0.0+1.21.1-NeoForge](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.21.1-NeoForge) | [Simple-Pain-1.0.0+1.21.1-NeoForge-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.21.1-NeoForge/Simple-Pain-1.0.0%2B1.21.1-NeoForge-no-sounds.jar) |
-
 ## 安装要求
 
 | 依赖 | 版本 |
 | --- | --- |
-| Minecraft | 1.20.1 / 1.20.4 / 1.21.1 / 1.21.11 |
-| Fabric Loader | ≥ 0.15.0 |
-| Java | ≥ 17（1.20.x）/ ≥ 21（1.21.x） |
-| Fabric API | 任意（运行时必需） |
-| NeoForge（1.21.1 移植版） | ≥ 21.1.248 |
-| Mod Menu（可选） | 提供配置界面 |
-| Cloth Config（可选） | Mod Menu 配置界面前置 |
+| Minecraft | 1.21.1 |
+| NeoForge | ≥ 21.1.248 |
+| Java | ≥ 21 |
+| Cloth Config（可选） | 模组列表提供「配置」按钮 |
 
 ## 配置
 
-配置文件位于 `config/pain_mechanic.json`，服务端与客户端共用；也可以安装 Mod Menu + Cloth Config 后在游戏内调整。
+配置文件位于 `config/pain_mechanic.json`；也可以安装 Cloth Config 后在模组列表的「配置」按钮中调整。
 
 主要配置项：
 
@@ -80,15 +65,7 @@
 
 ## 构建
 
-本仓库根目录为 1.21.11 源码，其余版本源码位于对应子目录：
-
-- 仓库根（`src/`）→ 1.21.11
-- `painmod-1.20.1/` → 1.20.1
-- `painmod-1.20.4/` → 1.20.4
-- `painmod-1.21.1/` → 1.21.1
-- painmod-neoforge-1.21.1/ → 1.21.1（NeoForge）
-
-需要 JDK 17（1.20.x）或 JDK 21（1.21.x）与网络（拉取 Fabric 依赖）：
+需要 JDK 21 与网络（拉取 NeoForge 依赖）：
 
 ```bash
 ./gradlew build
@@ -98,11 +75,11 @@
 
 ## 技术栈
 
-- Fabric Loader + Fabric API（生命周期、实体事件、网络、渲染、物品等）
-- NeoForge 移植版使用 NeoForge API（1.21.1），机制与 Fabric 版完全一致
+- NeoForge API（生命周期、事件、网络、渲染、物品等）
 - Java 21
 - Mixin（受伤捕获、休克姿态、跳跃禁用、GUI 抖动、肾上腺素冷却保留等）
 - 服务端权威逻辑 + 客户端网络同步（疼痛值、休克倒计时）
+- Cloth Config（可选配置界面）
 
 ## Contributors
 
@@ -119,4 +96,4 @@ MIT。
 
 ## AI 声明
 
-本项目（包括但不限于 Java 源码、`fabric.mod.json`、语言文件、音效清单、合成配方、构建脚本、本 README）**100% 由 AI 生成**，没有任何人类编写的代码。如果你在代码里看到奇怪的注释、乱码注释或者不优雅的实现——没错，那也是 AI 干的。喵。
+本项目（包括但不限于 Java 源码、`neoforge.mods.toml`、语言文件、合成配方、构建脚本、本 README）**100% 由 AI 生成**，没有任何人类编写的代码。如果你在代码里看到奇怪的注释、乱码注释或者不优雅的实现——没错，那也是 AI 干的。喵。
