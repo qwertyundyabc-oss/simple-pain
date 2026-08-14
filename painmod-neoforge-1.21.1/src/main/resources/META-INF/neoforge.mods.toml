@@ -5,7 +5,7 @@ issueTrackerURL = "https://github.com/qwertyundyabc-oss/simple-pain"
 
 [[mods]]
 modId = "pain_mechanic"
-version = "1.0.0+1.21.1"
+version = "1.0.1+1.21.1"
 displayName = "Simple Pain"
 logoFile = "assets/pain_mechanic/icon.png"
 description = '''This mod adds a simple pain mechanic. Taking damage increases your pain, and pain weakens your combat ability. When your pain exceeds 100%, you will go into shock and be unable to perform any actions. The shock threshold increases with your maximum health. While in shock, you have at most 40 seconds to wait for recovery or rescue.'''

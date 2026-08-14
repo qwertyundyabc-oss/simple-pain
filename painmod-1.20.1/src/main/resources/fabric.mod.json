@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "pain_mechanic",
-  "version": "1.0.0+1.20.1",
+  "version": "1.0.1+1.20.1",
   "name": "Simple Pain",
   "description": "这个模组添加了一个简单的疼痛机制，受到伤害就会增加疼痛值，疼痛值会使你的战斗力削弱。当疼痛超过100%，你就会休克，无法执行任何操作。休克阈值会随生命值上限的提升而提升。休克时，你最多只有40s的时间等待恢复或救援。\n\nThis mod adds a simple pain mechanic. Taking damage increases your pain, and pain weakens your combat ability. When your pain exceeds 100%, you will go into shock and be unable to perform any actions. The shock threshold increases with your maximum health. While in shock, you have at most 40 seconds to wait for recovery or rescue.",
   "authors": [

@@ -20,6 +20,7 @@ public class PainMechanicClient implements ClientModInitializer {
 				PainClientState.maxHealth = payload.maxHealth();
 				PainClientState.dying = payload.dying();
 				PainClientState.shockRemainingTicks = payload.shockRemainingTicks();
+				PainHud.onPainImpact(payload.painImpact(), payload.maxHealth());
 			});
 		});
 		ClientTickEvents.END_CLIENT_TICK.register(PainClientTicker::tick);

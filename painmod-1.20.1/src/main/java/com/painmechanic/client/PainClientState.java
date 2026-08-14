@@ -13,6 +13,7 @@ public final class PainClientState {
 		adrenalineActive = false;
 		dying = false;
 		shockRemainingTicks = 0;
+		PainHud.resetVignetteAnimation();
 	}
 
 	private PainClientState() {

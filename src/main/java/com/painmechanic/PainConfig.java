@@ -137,7 +137,7 @@ public final class PainConfig {
 		value.redVignetteThreshold = clamp(value.redVignetteThreshold, 0f, 0.99f, 0.3f);
 		value.painDroneThreshold = clamp(value.painDroneThreshold, 0f, 0.99f, 0.6f);
 		value.painDroneFadeSeconds = Math.max(0.05f, finite(value.painDroneFadeSeconds) ? value.painDroneFadeSeconds : 0.3f);
-		value.guiShakeThreshold = clamp(value.guiShakeThreshold, 0f, 0.99f, 0.65f);
+		value.guiShakeThreshold = clamp(value.guiShakeThreshold, 0f, 0.99f, 0.4f);
 		value.guiShakeMaxAmplitude = Math.max(0f, finite(value.guiShakeMaxAmplitude) ? value.guiShakeMaxAmplitude : 4f);
 		value.painTextBlinkIntervalSeconds = Math.max(0.05f,
 			finite(value.painTextBlinkIntervalSeconds) ? value.painTextBlinkIntervalSeconds : 0.272f);
@@ -289,7 +289,7 @@ public final class PainConfig {
 		/** 疼痛无人机音量变化时的淡入/淡出时长（秒） */
 		public float painDroneFadeSeconds = 0.3f;
 		/** GUI 开始颤抖的疼痛比例 */
-		public float guiShakeThreshold = 0.65f;
+		public float guiShakeThreshold = 0.4f;
 		/** GUI 颤抖在满疼痛时的最大像素幅度 */
 		public float guiShakeMaxAmplitude = 4.0f;
 		/** Pain percentage and shock text blink interval in seconds. */

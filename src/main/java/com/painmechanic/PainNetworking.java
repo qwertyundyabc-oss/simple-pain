@@ -23,13 +23,21 @@ public final class PainNetworking {
 	}
 
 	public static void sendImmediate(ServerPlayerEntity player) {
-		sendTo(player, true);
+		sendTo(player, true, 0f);
+	}
+
+	public static void sendDamage(ServerPlayerEntity player, float painImpact) {
+		sendTo(player, true, Math.max(0f, painImpact));
 	}
 
 	private static void sendTo(ServerPlayerEntity player, boolean force) {
+		sendTo(player, force, 0f);
+	}
+
+	private static void sendTo(ServerPlayerEntity player, boolean force, float painImpact) {
 		UUID id = player.getUuid();
 		PainSyncPayload payload = new PainSyncPayload(PainData.get(id), player.getMaxHealth(),
-			PainSystem.isDying(player), PainSystem.getShockRemainingTicks(player));
+			PainSystem.isDying(player), PainSystem.getShockRemainingTicks(player), painImpact);
 		PainSyncPayload previous = LAST_SENT.get(id);
 		boolean shockChanged = previous != null
 			&& ((previous.pain() > previous.maxHealth()) != (payload.pain() > payload.maxHealth())

@@ -1,8 +1,8 @@
-﻿plugins {
+plugins {
     id("fabric-loom") version "1.16-SNAPSHOT"
 }
 
-version = "1.0.0+1.21.1"
+version = "1.0.1+1.21.1"
 group = "com.painmechanic"
 
 base {

@@ -271,7 +271,7 @@ public final class PainSystem {
 			clampToMax(player);
 			tryTriggerAdrenaline(player);
 			player.setHealth(1f);
-			PainNetworking.sendImmediate(player);
+			PainNetworking.sendDamage(player, painGain);
 			return false;
 		}
 		return true;
@@ -304,11 +304,12 @@ public final class PainSystem {
 		float finalDamage = healthBefore != null
 			? Math.max(0f, healthBefore - player.getHealth())
 			: damageDealt;
-		PainData.add(id, finalDamage * PainConfig.get().damageToPainMultiplier);
+		float painGain = finalDamage * PainConfig.get().damageToPainMultiplier;
+		PainData.add(id, painGain);
 		delayBreathing(id);
 		clampToMax(player);
 		tryTriggerAdrenaline(player);
-		PainNetworking.sendImmediate(player);
+		PainNetworking.sendDamage(player, painGain);
 	}
 
 	private static void onServerTick(MinecraftServer server) {

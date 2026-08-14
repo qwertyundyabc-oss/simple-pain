@@ -1,5 +1,7 @@
-﻿.gradle/
+.gradle/
 build/
 run/
 *.log
 .DS_Store
+.idea/
+painmod-neoforge-1.21.1/src/main/java-com-backup/

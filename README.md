@@ -34,11 +34,11 @@
 
 | Minecraft 版本 | Release | 下载 |
 | --- | --- | --- |
-| 1.20.1 | [v1.0.0+1.20.1](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.20.1) | [Simple-Pain-1.0.0+1.20.1-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.20.1/Simple-Pain-1.0.0%2B1.20.1-no-sounds.jar) |
-| 1.20.4 | [v1.0.0+1.20.4](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.20.4) | [Simple-Pain-1.0.0+1.20.4-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.20.4/Simple-Pain-1.0.0%2B1.20.4-no-sounds.jar) |
-| 1.21.1 | [v1.0.0+1.21.1](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.21.1) | [Simple-Pain-1.0.0+1.21.1-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.21.1/Simple-Pain-1.0.0%2B1.21.1-no-sounds.jar) |
-| 1.21.11 | [v1.0.0+1.21.11](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.21.11) | [Simple-Pain-1.0.0+1.21.11-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.21.11/Simple-Pain-1.0.0%2B1.21.11-no-sounds.jar) |
-| 1.21.1 (NeoForge) | [v1.0.0+1.21.1-NeoForge](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.0%2B1.21.1-NeoForge) | [Simple-Pain-1.0.0+1.21.1-NeoForge-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.0%2B1.21.1-NeoForge/Simple-Pain-1.0.0%2B1.21.1-NeoForge-no-sounds.jar) |
+| 1.20.1 | [v1.0.1+1.20.1](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.1%2B1.20.1) | [Simple-Pain-1.0.1+1.20.1-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.1%2B1.20.1/Simple-Pain-1.0.1%2B1.20.1-no-sounds.jar) |
+| 1.20.4 | [v1.0.1+1.20.4](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.1%2B1.20.4) | [Simple-Pain-1.0.1+1.20.4-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.1%2B1.20.4/Simple-Pain-1.0.1%2B1.20.4-no-sounds.jar) |
+| 1.21.1 | [v1.0.1+1.21.1](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.1%2B1.21.1) | [Simple-Pain-1.0.1+1.21.1-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.1%2B1.21.1/Simple-Pain-1.0.1%2B1.21.1-no-sounds.jar) |
+| 1.21.11 | [v1.0.1+1.21.11](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.1%2B1.21.11) | [Simple-Pain-1.0.1+1.21.11-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.1%2B1.21.11/Simple-Pain-1.0.1%2B1.21.11-no-sounds.jar) |
+| 1.21.1 (NeoForge) | [v1.0.1+1.21.1-NeoForge](https://github.com/qwertyundyabc-oss/simple-pain/releases/tag/v1.0.1%2B1.21.1-NeoForge) | [Simple-Pain-1.0.1+1.21.1-NeoForge-no-sounds.jar](https://github.com/qwertyundyabc-oss/simple-pain/releases/download/v1.0.1%2B1.21.1-NeoForge/Simple-Pain-1.0.1%2B1.21.1-NeoForge-no-sounds.jar) |
 
 ## 安装要求
 
