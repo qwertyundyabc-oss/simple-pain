@@ -32,8 +32,9 @@ public class PainHud {
 	/** 旧版 NativeImage.setColor 使用 ABGR 像素格式（新版为 ARGB），这里把颜色分量交换好，避免红蓝互换。 */
 	private static final int VIGNETTE_ABGR = (VIGNETTE_RGB & 0xFF) << 16 | (VIGNETTE_RGB & 0xFF00) | (VIGNETTE_RGB >> 16) & 0xFF;
 	private static final int VIGNETTE_TEXTURE_WIDTH = 256;
-	private static final float VIGNETTE_START_RATIO = 0.20f;
+	private static final float VIGNETTE_START_RATIO = 0.15f;
 	private static final float VIGNETTE_PULSE_SECONDS = 1.28f;
+	private static final float VIGNETTE_PULSE_MIN_SPEED = 0.45f;
 	private static final int SPLATTER_RAY_COUNT = 18;
 	private static final int ANIMATED_GRAIN_FRAME_COUNT = 24;
 	private static final float GRAIN_FRAMES_PER_SECOND = 30.0f;
@@ -54,6 +55,8 @@ public class PainHud {
 	private static long lastImpactMs = -1L;
 	private static float impactStrength;
 	private static long lastVignetteFrameMs = -1L;
+	private static long lastPulseMs = -1L;
+	private static float vignettePhase;
 	private static float smoothedPainRatio;
 	private static long lastVisibilityFrameMs = -1L;
 	private static float vignetteVisibility;
@@ -144,15 +147,22 @@ public class PainHud {
 		float visibility = smoothVignetteVisibility(
 			targetRatio >= VIGNETTE_START_RATIO || impact >= 0.01f, now);
 		float persistent = ratio >= VIGNETTE_START_RATIO
-			? smootherstep(VIGNETTE_START_RATIO, 1.04f, ratio)
+			? smootherstep(VIGNETTE_START_RATIO, 0.85f, ratio)
 			: 0f;
 		if (visibility < 0.002f && persistent <= 0f && impact < 0.01f) {
 			return;
 		}
 
+		// 起伏/挤压速度随疼痛增大：低痛慢，高痛恢复到 VIGNETTE_PULSE_SECONDS 的现行速度。
+		float pulseSpeed = VIGNETTE_PULSE_MIN_SPEED
+			+ (1.0f - VIGNETTE_PULSE_MIN_SPEED) * smootherstep(VIGNETTE_START_RATIO, 0.75f, ratio);
+		float pulseDelta = lastPulseMs >= 0L
+			? Math.min(0.10f, Math.max(0f, (now - lastPulseMs) / 1000.0f))
+			: 0f;
+		lastPulseMs = now;
+		vignettePhase += pulseDelta * (float) (Math.PI * 2.0) / VIGNETTE_PULSE_SECONDS * pulseSpeed;
 		float phaseSeconds = now / 1000.0f;
-		float openPulse = 0.5f + 0.5f * (float) Math.cos(
-			phaseSeconds * (float) (Math.PI * 2.0) / VIGNETTE_PULSE_SECONDS);
+		float openPulse = 0.5f + 0.5f * (float) Math.cos(vignettePhase);
 
 		boolean restoreGuiShake = globalGuiContext == context;
 		if (restoreGuiShake) {
@@ -177,17 +187,17 @@ public class PainHud {
 		float farRadius = (float) Math.sqrt(cx * cx + cy * cy);
 		ensureSplatterCache(texW, texH, cx, cy);
 
-		float pulseStrength = smootherstep(0.32f, 0.54f, ratio);
+		float pulseStrength = smootherstep(0.28f, 0.48f, ratio);
 		float washStrength = smootherstep(0.44f, 1.0f, ratio);
 		float globalPulseStrength = smootherstep(0.46f, 0.78f, ratio);
 		float snowStrength = smootherstep(0.38f, 0.80f, ratio);
 		float centerCoverageStrength = smootherstep(0.56f, 0.98f, ratio);
 		float geometryRatio = Math.min(ratio, 0.50f);
-		float geometryStrength = smootherstep(VIGNETTE_START_RATIO, 1.04f, geometryRatio);
+		float geometryStrength = smootherstep(VIGNETTE_START_RATIO, 0.85f, geometryRatio);
 		float vesselStrength = 0.20f + 0.80f * smootherstep(0.48f, 0.68f, geometryRatio);
 
 		// 参考画面主要通过浓度呼吸；裂口轮廓只轻微起伏，不再整圈骤然收缩。
-		float lowPainSpread = smootherstep(0.20f, 0.50f, ratio);
+		float lowPainSpread = smootherstep(0.15f, 0.70f, ratio);
 		float lowPainWindowRadius = farRadius * (2.00f - 1.04f * lowPainSpread);
 		float highPainWindowRadius = farRadius * (1.03f - 0.28f * persistent);
 		float geometryBlend = smootherstep(0.42f, 0.58f, ratio);
@@ -199,14 +209,18 @@ public class PainHud {
 		windowRadius *= 1.0f - centerCompression;
 		windowRadius *= 1.0f + 0.38f * (1.0f - visibility);
 
+		// 20%~35% 低痛增强窗口：红晕在这一段更快变明显，35% 后平滑回归。
+		float lowBandEnhance = smootherstep(0.20f, 0.27f, ratio)
+			* (1.0f - smootherstep(0.35f, 0.45f, ratio));
 		float pulseLevel = 0.25f + 0.75f * (1.0f - openPulse);
 		float pulseAlpha = (0.012f + 0.55f * pulseStrength) * pulseLevel;
-		float edgeAlpha = 0.04f + 0.22f * persistent + pulseAlpha;
+		float edgeAlpha = 0.04f + 0.22f * persistent + 0.12f * lowBandEnhance + pulseAlpha;
 		float globalAlpha = 0.22f * washStrength
-			+ 0.32f * globalPulseStrength * (1.0f - openPulse);
+			+ 0.32f * globalPulseStrength * (1.0f - openPulse)
+			+ 0.06f * lowBandEnhance;
 		edgeAlpha += (0.78f - edgeAlpha) * impact;
 		globalAlpha += (0.55f - globalAlpha) * impact;
-		float lowPainOpacityScale = 0.72f + 0.28f * smootherstep(0.20f, 0.40f, ratio);
+		float lowPainOpacityScale = 0.72f + 0.28f * smootherstep(0.15f, 0.35f, ratio);
 		edgeAlpha *= lowPainOpacityScale;
 		globalAlpha *= lowPainOpacityScale;
 		edgeAlpha = Math.min(0.92f, edgeAlpha);
@@ -215,8 +229,8 @@ public class PainHud {
 		float edgeWidth = 6.0f + 18.0f * geometryStrength;
 		float contourWaveOscillation = 1.0f - 2.0f * openPulse;
 		float contourWaveAmount = 0.02f
-			+ 0.08f * smootherstep(0.35f, 0.50f, ratio)
-			+ 0.20f * smootherstep(0.50f, 1.0f, ratio);
+			+ 0.08f * smootherstep(0.15f, 0.35f, ratio)
+			+ 0.20f * smootherstep(0.35f, 0.70f, ratio);
 
 		float grainT = phaseSeconds * GRAIN_FRAMES_PER_SECOND;
 		int grainFrame = (int) Math.floor(grainT);
@@ -369,6 +383,8 @@ public class PainHud {
 		smoothedPainRatio = 0f;
 		lastVisibilityFrameMs = -1L;
 		vignetteVisibility = 0f;
+		vignettePhase = 0f;
+		lastPulseMs = -1L;
 	}
 
 	private static float smoothPainRatio(float target, long now) {
